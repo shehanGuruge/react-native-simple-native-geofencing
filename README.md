@@ -33,7 +33,7 @@ For background updates you have to activate this in your Xcode Project under: `P
 **iOS**
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-simple-native-geofencing` and add `RNSimpleNativeGeofencing.xcodeproj`
+2. Go to `node_modules` ➜ `@shehang/react-native-simple-native-geofencing` and add `RNSimpleNativeGeofencing.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNSimpleNativeGeofencing.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
@@ -46,7 +46,7 @@ For background updates you have to activate this in your Xcode Project under: `P
 
 ```
   include ':react-native-simple-native-geofencing'
-  project(':react-native-simple-native-geofencing').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-simple-native-geofencing/android')
+  project(':react-native-simple-native-geofencing').projectDir = new File(rootProject.projectDir,'../node_modules/@shehang/react-native-simple-native-geofencing/android')
 ```
 
 3. Insert the following lines inside the dependencies block in android/app/build.gradle:
@@ -129,7 +129,7 @@ async function requestLocationPermission() {
 ### Usage
 
 ```
-import RNSimpleNativeGeofencing from 'react-native-simple-native-geofencing';
+import RNSimpleNativeGeofencing from '@shehang/react-native-simple-native-geofencing';
 
 export default class App extends Component {
     componentWillMount() {
