@@ -1,0 +1,45 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+	package
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:3:11-53
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:1-6:12
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:4:5-78
+	android:name
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:4:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:5:5-68
+	android:name
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:5:22-65
+uses-sdk
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+		ADDED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml

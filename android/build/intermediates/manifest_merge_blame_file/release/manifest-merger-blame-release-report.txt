@@ -1,0 +1,20 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.simplegeofencing.reactnative"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->/Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="27" />
+9-->/Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+11-->/Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:4:5-78
+11-->/Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:4:22-76
+12    <uses-permission android:name="android.permission.WAKE_LOCK" />
+12-->/Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:5:5-68
+12-->/Users/admin/Documents/Sunshine Chat POC/SunshineChat/node_modules/react-native-simple-native-geofencing/android/src/main/AndroidManifest.xml:5:22-65
+13
+14</manifest>

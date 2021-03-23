@@ -1,0 +1,32 @@
+{
+  "name": "react-native-simple-native-geofencing",
+  "version": "0.8.5",
+  "description": "**Attention: This repo is not yet fully tested !**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "geofence",
+    "geofencing",
+    "native"
+  ],
+  "author": "Michael Raring",
+  "contributors": [
+    "Fabian Puch",
+    "cru3lgenius"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": ">0.47.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmika/react-native-simple-native-geofencing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/michaelmika/react-native-simple-native-geofencing/issues"
+  },
+  "homepage": "https://github.com/michaelmika/react-native-simple-native-geofencing#readme"
+}
