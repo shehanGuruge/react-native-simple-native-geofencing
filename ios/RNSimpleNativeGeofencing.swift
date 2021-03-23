@@ -566,7 +566,7 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
         }
     }
     
-    //MARK: -VERY IMPORTANT WRITTEN  BY ME
+    //MARK: - Fires when the user is in the geofence location while swithching it on
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         self.locationManager.requestState(for: region)
@@ -591,7 +591,7 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
 //        }
     }
     
-    //MARK: - ORIGNIAL
+
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("OUTSIDE A CIRCULAR REGION - on EXIT: ")
