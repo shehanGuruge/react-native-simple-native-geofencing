@@ -2,6 +2,7 @@ package com.simplegeofencing.reactnative;
 
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.app.LocalActivityManager;
 import android.app.NotificationChannel;
@@ -11,7 +12,9 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -26,9 +29,13 @@ import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 import com.facebook.react.bridge.ReactApplicationContext;
 
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "GeofenceBroadcastReceiver";
@@ -48,9 +55,10 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
             Log.e(TAG, errorMessage);
             return;
         }
+        ArrayList<String> geofenceAttachments = new ArrayList<String>();
         Log.i(TAG, "herhehr " );
 
-
+        System.out.println("keeps recienvinb");
         // Get the transition type.
         int geofenceTransition = geofencingEvent.getGeofenceTransition();
 
@@ -101,9 +109,11 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
                     Geofence geofence = geofencesWithoutMonitor.get(0);
                     String title = intent.getStringExtra("notifyEnterStringTitle");
                     String description = intent.getStringExtra("notifyEnterStringDescription");
+                    String attachmentURL = null;
                     Log.i("hshs","Title and descriptopn: "+ title + " " + description);
                     ArrayList<String> geofenceValues = intent.getStringArrayListExtra("geofenceValues");
                     ArrayList<String> geofenceKeys = intent.getStringArrayListExtra("geofenceKeys");
+                    geofenceAttachments = intent.getStringArrayListExtra("geofenceAttachments");
                     int index = geofenceKeys.indexOf(geofence.getRequestId());
                     try {
                         Log.i("hshs","Geofence values: "+ geofenceValues + index + geofence.getRequestId());
@@ -111,6 +121,7 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
 
                         description = description.replace("[value]", geofenceValues.get(index));
                         title = title.replace("[value]", geofenceValues.get(index));
+                        attachmentURL = geofenceAttachments.get(index);
                     } catch (IndexOutOfBoundsException e) {
                         Log.i(TAG, "No value set");
                     }
@@ -120,7 +131,8 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
                             description,
                             intent.getStringExtra("notifyChannelStringTitle"),
                             intent.getStringExtra("notifyChannelStringDescription"),
-                            intent
+                            intent,
+                            attachmentURL
                     );
                 }else{
                     clearNotification();
@@ -133,6 +145,7 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
                     Geofence geofence = geofencesWithoutMonitor.get(0);
                     String title = intent.getStringExtra("notifyExitStringTitle");
                     String description = intent.getStringExtra("notifyExitStringDescription");
+                    String attachmentURL = null;
                     ArrayList<String> geofenceValues = intent.getStringArrayListExtra("geofenceValues");
                     ArrayList<String> geofenceKeys = intent.getStringArrayListExtra("geofenceKeys");
                     int index = geofenceKeys.indexOf(geofence.getRequestId());
@@ -141,6 +154,7 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
                         Log.i("hshs","Geofence keys: "+ geofenceKeys);
                         description = description.replace("[value]", geofenceValues.get(index));
                         title = title.replace("[value]", geofenceValues.get(index));
+                        attachmentURL = geofenceAttachments.get(index);
                     } catch (IndexOutOfBoundsException e) {
                         Log.i(TAG, "No value set");
                     }
@@ -150,7 +164,8 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
                             description,
                             intent.getStringExtra("notifyChannelStringTitle"),
                             intent.getStringExtra("notifyChannelStringDescription"),
-                            intent
+                            intent,
+                            attachmentURL
                     );
                 }else{
                     clearNotification();
@@ -211,8 +226,10 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
                                                               String content,
                                                               String channelTitle,
                                                               String channelDescription,
-                                                              Intent pIntent
+                                                              Intent pIntent,
+                                                              String attachmentURL
     ) {
+        NotificationCompat.Builder notification = null;
         //Onclick
         Intent intent = new Intent(this.mContext, getMainActivityClass());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -220,14 +237,33 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
         //Intent intent = new Intent(this.mContext, NotificationEventReceiver.class);
         //PendingIntent contentIntent = PendingIntent.getBroadcast(this.mContext, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        //Build notification
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(this.mContext, CHANNEL_ID)
-                .setContentTitle(title)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
-                .setContentText(content)
-                .setSmallIcon(this.mContext.getApplicationInfo().icon)
-                .setContentIntent(contentIntent)
-                .setAutoCancel(true);
+        if(attachmentURL == null || attachmentURL == ""){
+           notification = new NotificationCompat.Builder(this.mContext, CHANNEL_ID)
+                    .setContentTitle(title)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
+                    .setContentText(content)
+                    .setSmallIcon(this.mContext.getApplicationInfo().icon)
+                    .setContentIntent(contentIntent)
+                    .setOngoing(true)
+                    .setAutoCancel(true);
+        }else{
+            Bitmap bitmap = null;
+            try{
+                AsyncTask<String, Void, Bitmap> request = new FetchImage().execute(attachmentURL);
+                bitmap = request.get();
+            }catch (Exception e){
+                System.out.println("Failed to fint the image");
+            }
+            //Build notification
+            notification = new NotificationCompat.Builder(this.mContext, CHANNEL_ID)
+                    .setContentTitle(title)
+                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap))
+                    .setContentText(content)
+                    .setSmallIcon(this.mContext.getApplicationInfo().icon)
+                    .setContentIntent(contentIntent)
+                    .setOngoing(true)
+                    .setAutoCancel(true);
+        }
 
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -250,13 +286,16 @@ public class GeofenceTransitionsBroadcastReceiver extends BroadcastReceiver {
                                  String content,
                                  String channelTitle,
                                  String channelDescription,
-                                 Intent pIntent
+                                 Intent pIntent,
+                                 String attachmentURL
     ){
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this.mContext);
 
         // notificationId is a unique int for each notification that you must define
+        Notification n = getNotificationBuilder(title, content, channelTitle, channelDescription, pIntent, attachmentURL).build();
+        n.flags = Notification.FLAG_ONGOING_EVENT;
         notificationManager.notify(NOTIFICATION_TAG, NOTIFICATION_ID,
-                getNotificationBuilder(title, content, channelTitle, channelDescription, pIntent).build());
+               n);
     }
     public void clearNotification(){
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this.mContext);

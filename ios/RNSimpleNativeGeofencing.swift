@@ -3,6 +3,7 @@
 //  RNSimpleNativeGeofencing
 //
 //  Created by Fabian Puch on 13.01.19.
+//  Enhanced by Shehan Guruge on 24.03.2021
 //  Copyright © 2019 Facebook. All rights reserved.
 //
 
@@ -44,6 +45,7 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
     var globaltimer: Timer?
     
     var valueDic: Dictionary<String, String> = [:]
+    var attachmentDic: Dictionary<String, String> = [:]
     var locationAuthorized = true
     var notificationAuthorized = true
     
@@ -126,6 +128,8 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
             
             let value = geofence.value(forKey: "value") as? String
             
+            let attachmentURL = geofence.value(forKey: "url") as? String
+            
             let geofenceRegionCenter = CLLocationCoordinate2D(
                 latitude: lat,
                 longitude: lon
@@ -139,6 +143,10 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
             
             if value != nil {
                 self.valueDic[id] = value!
+            }
+            
+            if attachmentURL != nil {
+                self.attachmentDic[id] = attachmentURL!
             }
             
             geofenceRegion.notifyOnExit = true
@@ -479,6 +487,24 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
                 identifier = "exit: \(region.identifier)"
             }
             
+            //MARK: -Attachment handling
+            let attachmentURL = self.attachmentDic[region.identifier]!
+            
+            if !attachmentURL.isEmpty {
+                let file = NSData(contentsOf: URL(string:attachmentURL)!)
+                print("file hbh: ", file)
+                let path = NSTemporaryDirectory() + "attachment"
+                _ = FileManager.default.createFile(atPath: path, contents: file as! Data, attributes: nil)
+
+                do {
+                    let file = URL(fileURLWithPath: path)
+                    let attachment = try UNNotificationAttachment(identifier: "attachment", url: file,options:[UNNotificationAttachmentOptionsTypeHintKey : "public.jpeg"])
+                    content.attachments = [attachment]
+                } catch {
+                    print(error)
+                }
+            }
+            
             
             let timeInSeconds: TimeInterval = 0.1
             
@@ -493,6 +519,9 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
                 content: content,
                 trigger: trigger
             )
+            
+         
+            
             
             notificationCenter.add(request, withCompletionHandler: { (error) in
                 if error != nil {
@@ -547,6 +576,7 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
         notificationCenter.add(request, withCompletionHandler: { (error) in
             if error != nil {
                 print("Error adding notification with identifier: \(identifier)")
+                print(error?.localizedDescription)
             }
         })
     }
@@ -591,7 +621,6 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
 //        }
     }
     
-
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("OUTSIDE A CIRCULAR REGION - on EXIT: ")
@@ -645,6 +674,29 @@ class RNSimpleNativeGeofencing: RCTEventEmitter, CLLocationManagerDelegate, UNUs
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0...length-1).map{ _ in letters.randomElement()! })
     }
-    
-    
+}
+
+
+
+@available(iOS 10.0, *)
+extension UNNotificationAttachment {
+    static func create(imageFileIdentifier: String, data: NSData, options: [NSObject : AnyObject]?) -> UNNotificationAttachment? {
+
+            let fileManager = FileManager.default
+            let tmpSubFolderName = ProcessInfo.processInfo.globallyUniqueString
+            let fileURLPath      = NSURL(fileURLWithPath: NSTemporaryDirectory())
+            let tmpSubFolderURL  = fileURLPath.appendingPathComponent(tmpSubFolderName, isDirectory: true)
+
+            do {
+                try fileManager.createDirectory(at: tmpSubFolderURL!, withIntermediateDirectories: true, attributes: nil)
+                let fileURL = tmpSubFolderURL?.appendingPathComponent(imageFileIdentifier)
+                try data.write(to: fileURL!, options: [])
+                let imageAttachment = try UNNotificationAttachment.init(identifier: imageFileIdentifier, url: fileURL!, options: options)
+                return imageAttachment
+            } catch let error {
+                print("error \(error)")
+            }
+
+        return nil
+    }
 }

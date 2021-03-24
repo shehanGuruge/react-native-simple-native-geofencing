@@ -64,6 +64,7 @@ public class RNSimpleNativeGeofencingModule extends ReactContextBaseJavaModule {
   private static final String PREFERENCE_LAST_NOTIF_ID = "PREFERENCE_LAST_NOTIF_ID";
   private ArrayList<String> geofenceValues;
   private ArrayList<String> geofenceKeys;
+  private ArrayList<String> geofenceAttachments;
   private static final String NOTIFICATION_TAG = "GeofenceNotification";
   private static final int NOTIFICATION_ID_START = 1;
   private static final int NOTIFICATION_ID_STOP = 150;
@@ -80,6 +81,7 @@ public class RNSimpleNativeGeofencingModule extends ReactContextBaseJavaModule {
     this.notifyChannelString[1] = "Description";
     this.geofenceKeys = new ArrayList<String>();
     this.geofenceValues = new ArrayList<String>();
+    this.geofenceAttachments = new ArrayList<String>();
   }
 
   @Override
@@ -193,6 +195,11 @@ public class RNSimpleNativeGeofencingModule extends ReactContextBaseJavaModule {
     if(geofenceObject.hasKey("value")){
       geofenceKeys.add(geofenceObject.getString("key"));
       geofenceValues.add(geofenceObject.getString("value"));
+      if(geofenceObject.hasKey("url")){
+        geofenceAttachments.add(geofenceObject.getString("url"));
+      }else{
+        geofenceAttachments.add(null);
+      }
       Log.i("gaga: ",geofenceObject + "Added geofence object");
     }
     Log.i("gaga: ",geofenceKeys + "geofenceObject");
@@ -368,6 +375,7 @@ public class RNSimpleNativeGeofencingModule extends ReactContextBaseJavaModule {
     intent.putExtra("duration", mDuration);
     intent.putStringArrayListExtra("geofenceKeys", geofenceKeys);
     intent.putStringArrayListExtra("geofenceValues", geofenceValues);
+    intent.putStringArrayListExtra("geofenceAttachments", geofenceAttachments);
     // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
     // calling addGeofences() and removeGeofences().
     Log.i("heofenc: ", "geofencekEYS: "+ geofenceKeys);

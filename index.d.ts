@@ -2,18 +2,22 @@
 // Based on the README.md's usage section
 // Template: https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html
 
+// Ability add attachments (pictures)
+
 type DangerGeofence = {
     key: string,
     latitude: number,
     longitude: number,
     radius: number,
-    value: string
+    value: string,
+    url: string
 }
 type MonitoringGeofence = {
     key: 'monitor',
     latitude: number,
     longitude: number,
-    radius: number
+    radius: number,
+    url: string
 }
 export type Geofence = DangerGeofence | MonitoringGeofence;
 
@@ -21,7 +25,7 @@ export type InitNotificationsSettings = {
     start: {
         notify: boolean,    // If Notification should be fired on start tracking
         title: string,      // Title of Notification
-        description: string // Content of Notification
+        description: string, // Content of Notification
     },
     stop: {
         notify: boolean,
