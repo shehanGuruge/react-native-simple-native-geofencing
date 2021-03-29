@@ -1,9 +1,13 @@
 
 
-#import "RCTBridgeModule.h"
+#import <Foundation/Foundation.h>
 
 
-@interface RCT_EXTERN_MODULE(RNSimpleNativeGeofencing, NSObject)
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+
+
+@interface RCT_EXTERN_MODULE(RNSimpleNativeGeofencing, RCTEventEmitter)
 
 
 RCT_EXTERN_METHOD(initNotification: (NSDictionary *)settings)

@@ -10,7 +10,7 @@
 import Foundation
 import CoreLocation
 import UserNotifications
-
+import React
 
 @available(iOS 10.0, *)
 @objc(RNSimpleNativeGeofencing)

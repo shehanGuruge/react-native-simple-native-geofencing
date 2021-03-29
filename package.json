@@ -1,6 +1,6 @@
 {
   "name": "@shehang/react-native-simple-native-geofencing",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "**Attention: This repo is not yet fully tested !**",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,8 @@
   "author": "Michael Raring",
   "contributors": [
     "Fabian Puch",
-    "cru3lgenius"
+    "cru3lgenius",
+    "Shehan Guruge"
   ],
   "license": "MIT",
   "peerDependencies": {

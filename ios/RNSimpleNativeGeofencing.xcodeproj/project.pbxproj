@@ -24,7 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRNSimpleNativeGeofencing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNSimpleNativeGeofencing.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libRNSimpleNativeGeofencing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRNSimpleNativeGeofencing.a; path = "/Users/admin/Desktop/react-native-simple-native-geofencing/ios/build/Debug-iphoneos/libRNSimpleNativeGeofencing.a"; sourceTree = "<absolute>"; };
 		B3E7B5891CC2AC0600A0062D /* RNSimpleNativeGeofencing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNSimpleNativeGeofencing.m; sourceTree = "<group>"; };
 		F588AA2F21EB9480000CC39F /* RNSimpleNativeGeofencing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNSimpleNativeGeofencing-Bridging-Header.h"; sourceTree = "<group>"; };
 		F588AA3021EB9480000CC39F /* RNSimpleNativeGeofencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNSimpleNativeGeofencing.swift; sourceTree = "<group>"; };
@@ -41,21 +41,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		134814211AA4EA7D00B7C361 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				134814201AA4EA6300B7C361 /* libRNSimpleNativeGeofencing.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
 				F588AA3021EB9480000CC39F /* RNSimpleNativeGeofencing.swift */,
 				B3E7B5891CC2AC0600A0062D /* RNSimpleNativeGeofencing.m */,
 				F588AA2F21EB9480000CC39F /* RNSimpleNativeGeofencing-Bridging-Header.h */,
-				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +90,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
