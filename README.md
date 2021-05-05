@@ -181,6 +181,7 @@ export default class App extends Component {
             longitude: -77.0175,
             radius: 200,
             value: "yellow"
+            url: "https://www.image.com" // replace this with the url of the image you want to display
           },
           {
             key: "geoNum2",
@@ -230,6 +231,7 @@ type GeofenceObject {
   longitude: Number,
   radius: Number,
   value: String
+  url: string
 }
 ```
 
@@ -242,6 +244,7 @@ type MonitoringGeofenceObject {
   latitude: Number,
   longitude: Number,
   radius: Number
+  url: string // The attachment url you want to show in the notification.Please this wont work for local device storage paths
 }
 type SettingObject {
   start: {
